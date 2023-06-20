@@ -1,4 +1,4 @@
-package com.example.hifzrecord;
+package com.example.hifzclass;
 
 import androidx.appcompat.app.AppCompatActivity;
 

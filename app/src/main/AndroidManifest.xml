@@ -8,9 +8,25 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HifzClass"
         tools:targetApi="31">
+        <activity
+            android:name=".updateSabaq2"
+            android:exported="false" />
+        <activity
+            android:name=".ShowAllStudents"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateSabaq"
+            android:exported="false" />
+        <activity
+            android:name=".EnrollStudent"
+            android:exported="false" />
+        <activity
+            android:name=".Home_Page"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

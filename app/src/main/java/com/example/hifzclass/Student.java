@@ -1,4 +1,4 @@
-package com.example.hifzrecord;
+package com.example.hifzclass;
 
 public class Student {
     private int id;
