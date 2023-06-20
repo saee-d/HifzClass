@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         github.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://github.com/aaaalii/Hifz_Record";
+                String url = "https://github.com/saee-d/HifzClass";
 
                 // Create an intent with ACTION_VIEW and the URL
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
