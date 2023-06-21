@@ -21,6 +21,16 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_AGE = "age";
     private static final String COLUMN_CLAS = "class";
 
+    public static final String TABLE_NAME_2 = "sabaq";
+
+    private static final String COLUMN_SABAQ_SURAH = "sabaqSurah";
+    private static final String COLUMN_SABAQ_STARTING_AYAT = "start";
+    private static final String COLUMN_SABAQ_ENDING_AYAT = "eynd";
+    private static final String COLUMN_SABAQI_SURAH = "sabaqiSurah";
+    private static final String COLUMN_MANZIL = "manzil";
+    private static final String COLUMN_PARENT_ID = "parent_id";
+
+
     public StudentsDbHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -35,12 +45,27 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
                 + COLUMN_CLAS + " TEXT"
                 + ")";
         db.execSQL(sql);
+
+        String sql1 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_2 + "("
+               + COLUMN_SABAQ_SURAH + "TEXT, "+
+                COLUMN_SABAQ_STARTING_AYAT + " TEXT," +
+               COLUMN_SABAQ_ENDING_AYAT + "TEXT," +
+                COLUMN_SABAQI_SURAH + " TEXT," +
+                COLUMN_MANZIL + "TEXT," +
+                COLUMN_PARENT_ID + " TEXT PRIMARY KEY," +
+                "FOREIGN KEY(" + COLUMN_PARENT_ID + ") REFERENCES " +
+                StudentsDbHelper.TABLE_NAME + "(" + StudentsDbHelper.COLUMN_ID + "))";
+        db.execSQL(sql);
+        db.execSQL(sql1);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        String sql1 = "DROP TABLE IF EXISTS " + TABLE_NAME_2;
         db.execSQL(sql);
+        db.execSQL(sql1);
         onCreate(db);
     }
 
@@ -55,6 +80,26 @@ public class StudentsDbHelper extends SQLiteOpenHelper {
 
         db.insert(TABLE_NAME, null, values);
         db.close();
+    }
+
+    public long insertAyatinfo(String sabaqSurah, String sabaqStart, String sabaqEnd, String sabqi, String manzil, String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SABAQ_SURAH, sabaqSurah);
+        values.put(COLUMN_SABAQ_STARTING_AYAT, sabaqStart);
+        values.put(COLUMN_SABAQ_ENDING_AYAT, sabaqEnd);
+        values.put(COLUMN_SABAQI_SURAH, sabqi);
+        values.put(COLUMN_MANZIL, manzil);
+        values.put(COLUMN_PARENT_ID, id);
+
+        //values.put(COLUMN_AGE, student.getAge());
+        //values.put(COLUMN_CLASS, student.isEnroll());
+
+        long chk = db.insert(TABLE_NAME_2, null, values);
+        db.close();
+
+        return chk;
     }
 
 //    public void updateStudent(Student student) {

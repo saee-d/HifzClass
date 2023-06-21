@@ -66,7 +66,7 @@ public class updateSabaq2 extends AppCompatActivity {
 //        }
 //        //////////////
 
-        SabaqDbHelper sabaqDbHelper = new SabaqDbHelper(this);
+        StudentsDbHelper sabaqDbHelper = new StudentsDbHelper(this);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +108,7 @@ public class updateSabaq2 extends AppCompatActivity {
                 }
                 //////////////
 
-                long chk = sabaqDbHelper.insertAll(s1, s2, s3, s4, s5, rollno);
+                long chk = sabaqDbHelper.insertAyatinfo(s1, s2, s3, s4, s5, rollno);
 
                 if(chk == -1){
                     Toast.makeText(updateSabaq2.this, "Insertion Failed!!", Toast.LENGTH_SHORT).show();
